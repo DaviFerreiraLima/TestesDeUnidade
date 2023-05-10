@@ -27,7 +27,7 @@ class TesteAvaliador {
 	void semLance() {
 		leilao.setLances(new ArrayList<Lance>());
 		avaliador = new Avaliador("Tiago");
-		
+	
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			avaliador.avalia(leilao);
 		});
@@ -51,9 +51,9 @@ class TesteAvaliador {
 		Lance lance4 = new Lance(joao, -1000.0);
 		leilao.propoe(lance4);
 		
-		assertThrows(IllegalArgumentException.class, () ->{
-			avaliador.avalia(leilao);
-		});
+		 assertEquals(-1000, avaliador.getMaiorLance());
+		  assertEquals(-1000, avaliador.getMenorLance());
+		
 	}
 
 	@Test

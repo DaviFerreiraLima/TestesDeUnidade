@@ -15,16 +15,14 @@ public class Avaliador {
 	public void avalia(Leilao leilao){
 		
 		List<Lance> listaLances = leilao.getLances();
-		Lance[] lances = leilao.getLances().toArray(new Lance[listaLances.size()]); //modificação 
-		if (lances.length > 0) { //verificação de existência de lances
-			sortLances(lances);
-		    menorDeTodos = lances[0].getValor();
-		    maiorDeTodos = lances[lances.length - 1].getValor();
-		} else {
-			throw new IndexOutOfBoundsException("O array de lances está vazio."); //tratamento dessa exception
-		}
+		Lance[] lances = leilao.getLances().toArray(new Lance[listaLances.size()]); //modificação  //verificação de existência de lances
+				sortLances(lances);
+				
+			    menorDeTodos = lances[0].getValor();
+			    maiorDeTodos = lances[lances.length - 1].getValor();
 		
 	}
+	
 	
 	//algoritmo de ordenacao insertion sort
 	private void sortLances(Lance[] vetor) {
