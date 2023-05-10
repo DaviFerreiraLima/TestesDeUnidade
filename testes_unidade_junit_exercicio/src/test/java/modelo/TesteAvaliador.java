@@ -50,9 +50,10 @@ class TesteAvaliador {
 		leilao.setLances(new ArrayList<Lance>());
 		Lance lance4 = new Lance(joao, -1000.0);
 		leilao.propoe(lance4);
-		
-		 assertEquals(-1000, avaliador.getMaiorLance());
-		  assertEquals(-1000, avaliador.getMenorLance());
+		avaliador.avalia(leilao);
+		avaliador = new Avaliador("Tiago");
+		assertEquals(-1000, avaliador.getMaiorLance());
+		 assertEquals(-1000, avaliador.getMenorLance());
 		
 	}
 
