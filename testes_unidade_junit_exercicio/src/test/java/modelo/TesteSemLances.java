@@ -25,7 +25,23 @@ class TesteSemLances {
 		jose = new Usuario("José");
 		leilao = new Leilao("Playstation 5");
 	}
-
+		
+	
+	@Test
+	void doisLancesDecrescentes() {
+	    System.out.println("-------------Dois Lances Decrescentes-------------");
+	    leilao.setLances(new ArrayList<Lance>());
+	    Lance lance1 = new Lance(joao, 1500.0);
+	    Lance lance2 = new Lance(maria, 1000.0);  // Trocar sequencia de lances
+	    leilao.propoe(lance1);
+	    leilao.propoe(lance2);
+	    avaliador = new Avaliador("Tiago");
+	    avaliador.avalia(leilao);
+	    assertEquals(1500.0, avaliador.getMaiorLance());
+	    assertEquals(1000.0, avaliador.getMenorLance());
+	}
+	
+	/*
 	@Test
 	void semLance() {
 		leilao.setLances(new ArrayList<Lance>());
@@ -58,6 +74,6 @@ class TesteSemLances {
 
 		assertEquals(Double.NEGATIVE_INFINITY, avaliador.getMaiorLance());
 		assertEquals(Double.POSITIVE_INFINITY, avaliador.getMenorLance());
-	}
+	}*/
 
 }

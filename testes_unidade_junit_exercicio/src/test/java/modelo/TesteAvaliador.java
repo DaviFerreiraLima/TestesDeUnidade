@@ -46,15 +46,14 @@ class TesteAvaliador {
 	}
 
 	@Test
-	void umLanceNegativo() {
+	void umLanceNegativo() { 
 		leilao.setLances(new ArrayList<Lance>());
 		Lance lance4 = new Lance(joao, -1000.0);
 		leilao.propoe(lance4);
-		avaliador = new Avaliador("Tiago");
-		avaliador.avalia(leilao);
-
-		assertEquals(Double.NEGATIVE_INFINITY, avaliador.getMaiorLance());
-		assertEquals(Double.POSITIVE_INFINITY, avaliador.getMenorLance());
+		
+		assertThrows(IllegalArgumentException.class, () ->{
+			avaliador.avalia(leilao);
+		});
 	}
 
 	@Test
@@ -88,7 +87,7 @@ class TesteAvaliador {
 	    System.out.println("-------------Dois Lances Decrescentes-------------");
 	    leilao.setLances(new ArrayList<Lance>());
 	    Lance lance1 = new Lance(joao, 1500.0);
-	    Lance lance2 = new Lance(maria, 1000.0);
+	    Lance lance2 = new Lance(maria, 1000.0);  // Trocar sequencia de lances
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
 	    avaliador = new Avaliador("Tiago");
@@ -125,6 +124,9 @@ class TesteAvaliador {
 	    leilao.propoe(lance3);
 	    avaliador = new Avaliador("Tiago");
 	    avaliador.avalia(leilao);
+	    
+	    assertEquals(2000, avaliador.getMaiorLance());
+	    assertEquals(1000,avaliador.getMenorLance());
 	}
 	
 	@Test

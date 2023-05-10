@@ -15,10 +15,9 @@ public class Avaliador {
 	public void avalia(Leilao leilao){
 		
 		List<Lance> listaLances = leilao.getLances();
-		Lance[] lances = leilao.getLances().toArray(new Lance[listaLances.size()]);
-		sortLances(lances);
-		
-		if (lances.length > 0) {
+		Lance[] lances = leilao.getLances().toArray(new Lance[listaLances.size()]); //modificação 
+		if (lances.length > 0) { //verificação de existência de lances
+			sortLances(lances);
 		    menorDeTodos = lances[0].getValor();
 		    maiorDeTodos = lances[lances.length - 1].getValor();
 		} else {
@@ -37,11 +36,12 @@ public class Avaliador {
 	    {
 	      key = vetor[j];
 	      // o segundo la�o itera sobre os valores que est�o antes da vari�vel key
-	      for (i = j; (i >= 0) && (vetor[i].getValor() > key.getValor()); i--)
+	      for (i = j - 1; (i >= 0) && (vetor[i].getValor() > key.getValor()); i--) // ele pega o valor[i] anterior do array e compara 
+	    	  //com o valor[j] que é um objeto posterior. sendo o valor de i > valor de J, ele faz a realocação.
 	      {
 	         vetor[i + 1] = vetor[i];
 	       }
-	        vetor[i] = key; //alteração nesse metodo
+	        vetor[i+1] = key; //alteração nesse metodo
 	    }
 	}
 	
