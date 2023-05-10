@@ -6,15 +6,15 @@ public class TesteManualAvaliador {
 
 	public static void main(String[] args) {
 		
-		Usuario joao = new Usuario("João");
+		Usuario joao = new Usuario("Joï¿½o");
 		Usuario maria = new Usuario("Maria");
-		Usuario jose = new Usuario("José");
+		Usuario jose = new Usuario("Josï¿½");
 		
 		Leilao leilao = new Leilao("Playstation 5");
 		
 		Avaliador avaliador;
 		
-		// 1,7 Não tem lance
+		// 1,7 Nï¿½o tem lance
 		System.out.println("-------------Sem Lance-------------");
 		leilao.setLances(new ArrayList<Lance>());
 		avaliador = new Avaliador("Tiago");
@@ -134,9 +134,9 @@ public class TesteManualAvaliador {
 		System.out.println(1000.0 + " == " + avaliador.getMenorLance());
 		
 		// 1,2,3,6,1,... Pelo menos um lance maior
-		//três lances (crescente)
+		//trï¿½s lances (crescente)
 		//valor > 0
-		System.out.println("-------------Três Lances Crescentes-------------");
+		System.out.println("-------------Trï¿½s Lances Crescentes-------------"); 
 		leilao.setLances(new ArrayList<Lance>());
 		leilao.propoe(lance1);
 		leilao.propoe(lance2);
@@ -149,9 +149,9 @@ public class TesteManualAvaliador {
 		
 		// 1,2,3,6,1,... Pelo menos um lance maior
 		// 1,2,4,5,6,1,... Pelo menos um lance menor
-		//três lances (decrescente)
+		//trï¿½s lances (decrescente)
 		//valor > 0
-		System.out.println("-------------Três Lances Decrescentes-------------");
+		System.out.println("-------------Trï¿½s Lances Decrescentes-------------");
 		leilao.setLances(new ArrayList<Lance>());
 		leilao.propoe(lance3);
 		leilao.propoe(lance2);
@@ -161,10 +161,10 @@ public class TesteManualAvaliador {
 		System.out.println(2000.0 + " == " + avaliador.getMaiorLance());
 		System.out.println(1000.0 + " == " + avaliador.getMenorLance());
 		
-		// 1,2,4,6,1,... Pelo menos um lance que não é maior nem menor
-		//três lances (misturado)
+		// 1,2,4,6,1,... Pelo menos um lance que nï¿½o ï¿½ maior nem menor
+		//trï¿½s lances (misturado)
 		//valor > 0
-		System.out.println("-------------Três Lances Misturados-------------");
+		System.out.println("-------------Trï¿½s Lances Misturados-------------");
 		leilao.setLances(new ArrayList<Lance>());
 		leilao.propoe(lance1);
 		leilao.propoe(lance3);
