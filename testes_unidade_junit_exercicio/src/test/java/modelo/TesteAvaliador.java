@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TesteAvaliador {
@@ -22,23 +23,28 @@ class TesteAvaliador {
 		jose = new Usuario("José");
 		leilao = new Leilao("Playstation 5");
 	}
-		
-	@Test  //testado
-	void semLance() {
+	
+	@BeforeEach
+
+	void beforeEachSetup() {
 		leilao.setLances(new ArrayList<Lance>());
 		avaliador = new Avaliador("Tiago");
-	
+	}
+		
+	@Test  
+	void semLance() {
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			avaliador.avalia(leilao);
+			
 		});
 	}
 	//testado
 	@Test
 	void umLance() {
-		leilao.setLances(new ArrayList<Lance>());
+		
 		Lance lance1 = new Lance(joao, 1000.0);
 		leilao.propoe(lance1);
-		avaliador = new Avaliador("Tiago");
+		
 		avaliador.avalia(leilao);
 
 		assertEquals(1000.0, avaliador.getMaiorLance());
@@ -47,10 +53,10 @@ class TesteAvaliador {
 
 	@Test
 	void umLanceNegativo() { 
-		leilao.setLances(new ArrayList<Lance>());
+		
 		Lance lance4 = new Lance(joao, -1000.0);
 		leilao.propoe(lance4);
-		avaliador = new Avaliador("Tiago");
+		
 		avaliador.avalia(leilao);
 		
 		assertEquals(-1000, avaliador.getMaiorLance());
@@ -61,10 +67,10 @@ class TesteAvaliador {
 	@Test
 	void umLanceZero() {
 	    System.out.println("-------------Um Lance Zero-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance5 = new Lance(joao, 0.0);
 	    leilao.propoe(lance5);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    assertEquals(0.0, avaliador.getMaiorLance());
 	    assertEquals(0.0, avaliador.getMenorLance());
@@ -73,12 +79,12 @@ class TesteAvaliador {
 	@Test
 	void doisLancesCrescentes() {
 	    System.out.println("-------------Dois Lances Crescentes-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance1 = new Lance(joao, 1000.0);
 	    Lance lance2 = new Lance(maria, 1500.0);
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    assertEquals(1500.0, avaliador.getMaiorLance());
 	    assertEquals(1000.0, avaliador.getMenorLance());
@@ -87,12 +93,12 @@ class TesteAvaliador {
 	@Test
 	void doisLancesDecrescentes() {
 	    System.out.println("-------------Dois Lances Decrescentes-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance1 = new Lance(joao, 1500.0);
 	    Lance lance2 = new Lance(maria, 1000.0);  // Trocar sequencia de lances
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    assertEquals(1500.0, avaliador.getMaiorLance());
 	    assertEquals(1000.0, avaliador.getMenorLance());
@@ -101,14 +107,14 @@ class TesteAvaliador {
 	@Test
 	void tresLancesCrescentes() {
 	    System.out.println("-------------Três Lances Crescentes-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance1 = new Lance(joao, 1000.0);
 	    Lance lance2 = new Lance(maria, 1500.0);
 	    Lance lance3 = new Lance(jose, 2000.0);
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
 	    leilao.propoe(lance3);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    assertEquals(2000.0, avaliador.getMaiorLance());
 	    assertEquals(1000.0, avaliador.getMenorLance());
@@ -117,14 +123,14 @@ class TesteAvaliador {
 	@Test
 	void tresLancesDecrescentes() {
 	    System.out.println("-------------Três Lances Decrescentes-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance1 = new Lance(joao, 2000.0);
 	    Lance lance2 = new Lance(maria, 1500.0);
 	    Lance lance3 = new Lance(jose, 1000.0);
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
 	    leilao.propoe(lance3);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    
 	    assertEquals(2000, avaliador.getMaiorLance());
@@ -134,14 +140,14 @@ class TesteAvaliador {
 	@Test
 	void tresLancesMisturados() {
 	    System.out.println("-------------Três Lances Misturados-------------");
-	    leilao.setLances(new ArrayList<Lance>());
+	    
 	    Lance lance1 = new Lance(joao, 1000.0);
 	    Lance lance2 = new Lance(maria, 1500.0);
 	    Lance lance3 = new Lance(jose, 1200.0);
 	    leilao.propoe(lance1);
 	    leilao.propoe(lance2);
 	    leilao.propoe(lance3);
-	    avaliador = new Avaliador("Tiago");
+	    
 	    avaliador.avalia(leilao);
 	    assertEquals(1500.0, avaliador.getMaiorLance());
 	    assertEquals(1000.0, avaliador.getMenorLance());
